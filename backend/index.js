@@ -6,7 +6,16 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+// app.use(cors({ origin: "*" }));
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://your-vercel-frontend.vercel.app'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
+app.options("*", cors());
+
+
 
 const upload = multer({ dest: "uploads/" });
 
