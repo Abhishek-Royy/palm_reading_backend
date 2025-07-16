@@ -18,6 +18,10 @@ app.options("*", cors());
 
 
 const upload = multer({ dest: "uploads/" });
+app.use("/:id", (req, res) => {
+  res.send(`Your ID is ${req.params.id}`);
+});
+
 
 app.post("/upload", upload.single("palm"), async (req, res) => {
   const imagePath = path.join(__dirname, req.file.path);
